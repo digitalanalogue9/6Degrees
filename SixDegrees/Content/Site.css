@@ -1,0 +1,115 @@
+﻿body
+{
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+#left-container, #right-container, #center-container
+{
+    /*height:600px;     position:absolute;     top:0; */
+}
+
+#left-container, #right-container
+{
+    color: #686c70;
+    background-color: #fff;
+    background-repeat: no-repeat;
+}
+
+#left-container
+{
+}
+
+#right-container
+{
+}
+
+#right-container h4
+{
+    text-indent: 8px;
+}
+
+#center-container
+{
+    background-color: #1a1a1a;
+    color: #ccc;
+}
+
+.text
+{
+}
+
+#inner-details
+{
+    font-size: 0.8em;
+    list-style: none;
+}
+
+#log
+{
+    font-size: 1.0em;
+    font-weight: bold;
+    color: #23A4FF;
+}
+
+
+#infovis
+{
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/*TOOLTIPS*/
+.tip
+{
+    color: #111;
+    width: 139px;
+    background-color: white;
+    border: 1px solid #ccc;
+    -moz-box-shadow: #555 2px 2px 8px;
+    -webkit-box-shadow: #555 2px 2px 8px;
+    -o-box-shadow: #555 2px 2px 8px;
+    box-shadow: #555 2px 2px 8px;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    font-size: 10px;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    padding: 7px;
+}
+
+.rowunderline
+{
+    border-bottom: 1px solid #ccc;
+}
+
+.table td
+{
+    padding-bottom: 0px !important;
+}
+
+.input-xsmall
+{
+    width: 50px;
+}
+
+#beta
+{
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    z-index: 1040;
+    width: 73px;
+    height: 69px;
+    opacity: 0.4;
+    filter:alpha(opacity=40);
+}
+
+.table thead tr
+{
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(242, 242, 242));
+    background-repeat: repeat-x;
+    background-color: rgb(250,250,250);
+    box-shadow: inset 0px -1px 0px rgba(0,0,0,0.1), 0px 1px 10px rgba(0,0,0,0.1);
+}

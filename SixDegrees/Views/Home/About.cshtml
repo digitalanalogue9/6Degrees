@@ -1,0 +1,44 @@
+﻿@model SixDegrees.Models.GraphViewModel
+@* Required so you have extention methods for client timings *@
+@using StackExchange.Profiling;
+@{
+    ViewBag.Title = "About 6Degrees";
+}
+@section foot{
+    @MiniProfiler.RenderIncludes(position: RenderPosition.Right, useExistingjQuery: true)
+}
+@section scripts
+    {
+}
+@section navigation
+{
+    <li><a href="/Home/Index">Home</a></li>
+    <li><a href="/Home/Create">Create</a></li>
+    <li><a href="/Home/Demo">Demo</a></li>
+    <li class="active"><a href="/Home/About">About</a></li>
+}
+<div class="row">
+    <div class="span12">
+        <h2>
+            6Degrees</h2>
+        <div>
+            6Degrees is a pretty simple application that allows you to create connection graphs.
+        </div>
+        <p>
+            We can do more with this application if required e.g. having directions between
+            nodes, different colours, shapes,etc</p>
+        <p>
+            More capabilities of the excellent JIT Data Visualisation library can be found <a
+                href="http://thejit.org/">here</a>
+        </p>
+        <p>
+            <b>Libraries and Technology (google for more detail...)</b></p>
+        <ul class="unsigned">
+            <li><a href="https://www.google.co.uk/search?q=ASP.Net MVC4" target="_blank">ASP.Net MVC4</a></li>
+            <li><a href="https://www.google.co.uk/search?q=RavenDB" target="_blank">RavenDB (Embedded)</a></li>
+            <li><a href="https://www.google.co.uk/search?q=Twitter Bootstrap CSS Framework" target="_blank">Twitter Bootstrap CSS Framework</a></li>
+            <li><a href="https://www.google.co.uk/search?q=Jquery" target="_blank">Jquery</a>/<a href="https://www.google.co.uk/search?q=Jquery UI" target="_blank">Jquery UI</a></li>
+            <li><a href="https://www.google.co.uk/search?q=Infovis JIT Data Visualization" target="_blank">Infovis JIT Data Visualisation</a></li>
+        </ul>
+    </div>
+</div>

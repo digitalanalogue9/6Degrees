@@ -1,0 +1,41 @@
+﻿@model SixDegrees.Models.GraphViewModel
+@* Required so you have extention methods for client timings *@
+@using StackExchange.Profiling;
+@{
+    ViewBag.Title = @Model.Name;
+}
+@section foot{
+    @MiniProfiler.RenderIncludes(position: RenderPosition.Right, useExistingjQuery: true)
+}
+@section scripts
+    {
+    @this.TimeScript("thejit",
+        @<script src="@Url.Content("~/Scripts/Jit/jit-yc.js")" type="text/javascript"></script>)
+    @this.TimeScript("controller",
+        @<script src="@Url.Content("~/Scripts/application/home.view.chirp.js")" type="text/javascript"></script>)
+}
+@section navigation
+{
+    <li class="active"><a href="/Home/View/@Model.Id">
+    @Html.Raw(Model.Name)</a></li>
+    <li><a href="/Home/About">About</a></li>
+
+}
+<div class="row">
+    <input type="hidden" id="modelid" name="modelid" value="@Model.Id" />
+    <div class="span10" id="center-container">
+        <div id="infovis">
+        </div>
+    </div>
+    <div class="span2" id="xright-container">
+        <div id="inner-details">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <div id="log">
+        </div>
+    </div>
+</div>

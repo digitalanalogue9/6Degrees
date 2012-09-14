@@ -1,0 +1,92 @@
+﻿@model SixDegrees.Models.HomeIndexViewModel
+@* Required so you have extention methods for client timings *@
+@using StackExchange.Profiling;
+@{
+    ViewBag.Title = "Home";
+}
+@section foot{
+    @MiniProfiler.RenderIncludes(position: RenderPosition.Right, useExistingjQuery: true)
+
+}
+
+@section scripts
+    {
+    @this.TimeScript("controller",
+        @<script src="@Url.Content("~/Scripts/application/home.index.chirp.js")" type="text/javascript"></script>)
+}
+@section navigation
+{
+    <li class="active"><a href="/Home/Index">Home</a></li>
+    <li><a href="/Home/Create">Create</a></li>
+    <li><a href="/Home/Demo">Demo</a></li>
+    <li><a href="/Home/About">About</a></li>
+}
+<div class="row">
+    <div class="span12">
+        <h2>
+            Welcome to 6 degrees - a connection visualisation tool</h2>
+        <h3 class="muted">
+            Want to know more?  Click <a href="/Home/About">here</a> </h3>
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th width="52%">
+                        Name
+                    </th>
+                    <th width="16%">
+                        Last Modified
+                    </th>
+                    <th width="26%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in Model.Graphs)
+                {
+                    <tr>
+                        <td>@Html.Raw(row.Name)
+                        </td>
+                        <td>@Html.Raw(row.LastModified.ToString("dd-MM-yyyy"))
+                        </td>
+                        <td>
+                            <div class="pull-right">
+                                <form action="/Home/Delete" method="post">
+                                @Html.Hidden("deleteid", row.Id.Replace("graphs/", string.Empty))
+                                @Html.Hidden("pagesize", 10)
+                                @Html.Hidden("pagenumber", Model.CurrentPage)
+                                @Html.ActionLink("View", "ViewGraph", "Home", new { id = row.Id.Replace("graphs/", string.Empty) }, new { @class = "btn btn-success", target = "_blank" })
+                                @Html.ActionLink("Edit", "Edit", "Home", new { id = row.Id.Replace("graphs/", string.Empty) }, new { @class = "btn btn-primary" })
+                                <input type="submit" class="btn btn-danger" value="Delete" />
+                                <a target="_blank" href="@string.Format("/Home/GetFile/{0}", row.Id.Replace("graphs/", string.Empty))" class="btn btn-inverse">
+                                    Download</a>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        @if (Model.TotalPages > 1)
+        {
+            <div class="pagination">
+                <ul>
+                    @for (var x = 1; x < Model.TotalPages + 1; x++)
+                    {
+                        if (Model.CurrentPage == x)
+                        {
+                        <li><a class='active' href="@string.Format("/Home/Index?pagenumber={0}", x)">@x</a></li>
+
+                        }
+                        else
+                        {
+                        <li><a href="@string.Format("/Home/Index?pagenumber={0}", x)">@x</a></li>
+                        }
+
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

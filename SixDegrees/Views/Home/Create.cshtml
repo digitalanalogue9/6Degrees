@@ -1,0 +1,88 @@
+﻿@* Required so you have extention methods for client timings *@
+@using StackExchange.Profiling;
+@{
+    ViewBag.Title = "Create";
+}
+@section foot{
+    @MiniProfiler.RenderIncludes(position: RenderPosition.Right, useExistingjQuery: true)
+}
+@section scripts
+    {
+    @this.TimeScript("controller",
+        @<script src="@Url.Content("~/Scripts/application/home.create.chirp.js")" type="text/javascript"></script>)
+}
+@section navigation
+{
+    <li><a href="/Home/Index">Home</a></li>
+    <li class="active"><a href="/Home/Create">Create</a></li>
+    <li><a href="/Home/Demo">Demo</a></li>
+    <li><a href="/Home/About">About</a></li>
+}
+<div class="row" id="step1">
+    <div class="span12">
+        <h2>
+            Create - Upload your csv file</h2>
+    </div>
+</div>
+<form action="/Home/Create" method="post" enctype="multipart/form-data" class="form-inline">
+<div class="row">
+    <div class="span6">
+        <input type="text" name="name" id="name" class="input-xxlarge" placeholder="Name" />
+    </div>
+    <div class="span5">
+        <input type="file" class="hide" name="file" id="file" />
+        <div class="input-append">
+            <input id="filenametext" class="input-xlarge" type="text" placeholder="File" />
+            <a class="btn" id="filenamebutton">Browse</a>
+        </div>
+        <select class="input-xsmall" name="delimiter">
+            <option value="," selected="selected">,</option>
+            <option value=";">;</option>
+            <option value="||">||</option>
+            <option value="-">-</option>
+        </select>
+    </div>
+    <div class="span1">
+        <div class="pull-right">
+            <input type="submit" id="step1button" name="step1button" class="btn btn-primary"
+                value="Upload file" />
+        </div>
+    </div>
+</div>
+</form>
+<div class="row">
+    <div class="span12">
+        <div class="alert">
+            <strong>Hey!</strong>Once you've uploaded the file, you'll have the option to either
+            amend the file and re-upload it or change the data on screen. Your choice :-)
+        </div>
+        <div class="alert alert-info">
+            <h4>
+                File Format</h4>
+            <p>
+                The file format is a comma separate set of values</p>
+            <p>
+                You have <b>2</b> choices :</p>
+            <p>
+                <b>Jagged</b> - Name,Type,Description,then an unlimited comma separated list of
+                related items</p>
+            <p>
+                Rod,Presenter,Good dungarees,Jane,Freddy,George</p>
+            <p>
+                Bungle,Bear,Grrr,Zippy</p>
+            <p>
+                George,Hippo,ooooh zippy,Zippy,Jane,Geoffrey,Georgina</p>
+            <p>
+                <b>One column for related items</b> - Name,Type,Description, then a delimited list
+                of related items in one column</p>
+            <p>
+                Rod,Presenter,Good dungarees,Jane||Freddy||George</p>
+            <p>
+                Bungle,Bear,Grrr,Zippy</p>
+            <p>
+                George,Hippo,ooooh zippy,Zippy||Jane||Geoffrey||Georgina</p>
+            <p>
+                <i>Acceptable delimiters can be found in the dropdown next to the Go button</i></p>
+        </div>
+    </div>
+</div>

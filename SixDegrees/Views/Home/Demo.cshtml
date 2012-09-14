@@ -1,0 +1,35 @@
+﻿@* Required so you have extention methods for client timings *@
+@using StackExchange.Profiling;
+@{
+    ViewBag.Title = "Demo";
+}
+@section scripts
+    {
+    @this.TimeScript("compressed jit",
+        @<script src="@Url.Content("~/Scripts/jit/jit-yc.js")" type="text/javascript"></script>)
+    @this.TimeScript("controller",
+        @<script src="@Url.Content("~/Scripts/application/home.demo.chirp.js")" type="text/javascript"></script>)
+}
+@section navigation
+{
+    <li><a href="/Home/Index">Home</a></li>
+    <li><a href="/Home/Create">Create</a></li>
+    <li class="active"><a href="/Home/Demo">Demo</a></li>
+}
+<div class="row">
+    <div class="span10" id="center-container">
+        <div id="infovis">
+        </div>
+    </div>
+    <div class="span2" id="xright-container">
+        <div id="inner-details">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <div id="log">
+        </div>
+    </div>
+</div>
